@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Carousel from './Carousel';
+import Random from './randomComponent';
+import './App.css'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.dataToRender = [
+      { id : 1, text : "Hello One!"},
+      { id : 2, text : "Hello Two!"},
+      { id : 3, text : "Hello Three!"},
+      { id : 4, text : "Hello Four!"},
+      { id : 5, text : "Hello Five!"},
+      { id : 6, text : "Hello Six!"},
+      { id : 7, text : "Hello Seven!"},
+      { id : 8, text : "Hello Eight!"}]
+
+    this.componentArray = this.dataToRender.map((elem) => 
+      <Random key={elem.id} {...elem}/>
+    )
+    this.SAFirst = <Random key="blah11" />
+    this.SALast = <Random key="blah12" />
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Carousel width={1000} maxComponentsInFrame={3} height={300} seeAllComponentFirst={this.SAFirst} componentArray = {this.componentArray} seeAllComponentLast={this.SALast} />
       </div>
     );
   }

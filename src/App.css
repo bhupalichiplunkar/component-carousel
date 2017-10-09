@@ -1,28 +1,39 @@
-.App {
+.carousel {
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  margin : 50px auto;
+}
+.prev,.next{
+  flex: 0 0 auto;
+  margin : 0 auto;
+  cursor: pointer;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.outer-container{
+  overflow: hidden;
+  position: relative;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.wrapper{
+  display: flex;
+  flex-flow: row nowrap;
+  height: inherit;
+  position: absolute;
+  left : 0;
+  transition : left ease-in-out .8s;
 }
 
-.App-title {
-  font-size: 1.5em;
+.random{
+  text-align : center;
+  border : 1px solid #e3e3e3;
+  flex : 0 0 auto;
+  line-height : 100px;
+  width : 300px;
+  height : 100px;
+  margin: auto 15px;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.hide div{
+  display: none;
 }
