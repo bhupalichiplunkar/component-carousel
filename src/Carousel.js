@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WrapperComponent from './Wrapper';
+import s from './styles';
 
 class Carousel extends Component {
   constructor(props){
@@ -57,17 +58,17 @@ class Carousel extends Component {
 
   render() {
     return (
-      <div className="carousel">
-        <div style={{"line-height" : `${this.props.height}px`, height : `${this.props.height}px`}} className={`prev ${this.state.shouldHidePrev ? 'hide' : ''}`} > 
-         <div onClick={this.previousFrame}>&#60;</div>
-        </div>
-        <div className="outer-container" style={{height : `${this.props.height}px`, width : `${this.props.width}px`}}>
+      <s.Carousel>
+        <s.CarouseButton height={`${this.props.height}px`}> 
+          <s.ButtonText hide ={this.state.shouldHidePrev} onClick={this.previousFrame}>&#60;</s.ButtonText>
+        </s.CarouseButton>
+        <s.OuterContainer height = {`${this.props.height}px`} width = {`${this.props.width}px`}>
           <WrapperComponent left={`${this.state.left}px`} componentArray={this.props.componentArray} seeAllComponentFirst = {this.props.seeAllComponentFirst} seeAllComponentLast = {this.props.seeAllComponentLast}/>
-        </div>
-        <div style={{"line-height" : `${this.props.height}px`, height : `${this.props.height}px`}} className={`next ${this.state.shouldHideNext? 'hide' : ''}`} > 
-          <div onClick={this.nextFrame}>&#62;</div>
-        </div>
-      </div>
+        </s.OuterContainer>
+        <s.CarouseButton height={`${this.props.height}px`}> 
+          <s.ButtonText hide ={this.state.shouldHideNext} onClick={this.nextFrame}>&#62;</s.ButtonText>
+        </s.CarouseButton>
+      </s.Carousel>
     );
   }
 }

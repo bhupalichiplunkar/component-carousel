@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import s from './styles';
 
 class WrapperComponent extends Component {
   render() {
     return (
-      <div className="wrapper" style={{left : this.props.left}}>
+      <s.Wrapper left = {this.props.left}>
        {this.props.seeAllComponentFirst}
        {this.props.componentArray}
        {this.props.seeAllComponentLast}
-      </div>
+      </s.Wrapper>
     );
   }
 }
