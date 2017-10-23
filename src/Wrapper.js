@@ -5,9 +5,7 @@ class WrapperComponent extends Component {
   render() {
     return (
       <s.Wrapper left = {this.props.left}>
-       {this.props.seeAllComponentFirst}
-       {this.props.componentArray}
-       {this.props.seeAllComponentLast}
+       {this.props.children}
       </s.Wrapper>
     );
   }

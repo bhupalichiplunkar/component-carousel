@@ -11,21 +11,24 @@ class Carousel extends Component {
       totalFrames : this.calculateFrames(props),
       left : 0,
       shouldHidePrev : true,
-      shouldHideNext : props.componentArray.length > 3 ? false : true
+      shouldHideNext : this.length > 3 ? false : true
     }
     this.previousFrame = this.previousFrame.bind(this);
     this.nextFrame = this.nextFrame.bind(this);
   }
 
   calculateFrames(props){
-    let length = props.componentArray.length;
-    if(props.seeAllComponentFirst){
-        length+=1;
-    }
-    if(props.seeAllComponentLast){
-        length+=1
-    }
-    return (length % this.maxComponentsInFrame === 0) ? Math.floor(length / this.maxComponentsInFrame) : Math.ceil(length / this.maxComponentsInFrame)
+    let {children} = props;
+    this.length = 0;
+    this.length = children.reduce((sum,child)=>{
+      if(child.hasOwnProperty("length")){
+        sum += child.length;
+      } else  {
+        sum += 1;
+      }
+      return sum;
+    },0)
+    return (this.length % this.maxComponentsInFrame === 0) ? Math.floor(this.length / this.maxComponentsInFrame) : Math.ceil(this.length / this.maxComponentsInFrame)
   }
 
   previousFrame(){
@@ -59,11 +62,13 @@ class Carousel extends Component {
   render() {
     return (
       <s.Carousel>
-        <s.CarouseButton height={`${this.props.height}px`}> 
+        <s.CarouseButton className={this.props.button} height={`${this.props.height}px`}> 
           <s.ButtonText hide ={this.state.shouldHidePrev} onClick={this.previousFrame}>&#60;</s.ButtonText>
         </s.CarouseButton>
         <s.OuterContainer height = {`${this.props.height}px`} width = {`${this.props.width}px`}>
-          <WrapperComponent left={`${this.state.left}px`} componentArray={this.props.componentArray} seeAllComponentFirst = {this.props.seeAllComponentFirst} seeAllComponentLast = {this.props.seeAllComponentLast}/>
+          <WrapperComponent left={`${this.state.left}px`}>
+            {this.props.children}
+          </WrapperComponent>
         </s.OuterContainer>
         <s.CarouseButton height={`${this.props.height}px`}> 
           <s.ButtonText hide ={this.state.shouldHideNext} onClick={this.nextFrame}>&#62;</s.ButtonText>

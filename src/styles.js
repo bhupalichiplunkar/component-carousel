@@ -10,7 +10,6 @@ styles.Carousel = styled.div`
 
 styles.CarouseButton = styled.div`
     flex: 0 0 auto;
-    margin : 0 auto;
     cursor: pointer;
     line-height : ${props => props.height};
 `;

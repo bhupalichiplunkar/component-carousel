@@ -26,7 +26,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Carousel width={1000} maxComponentsInFrame={3} height={300} seeAllComponentFirst={this.SAFirst} componentArray = {this.componentArray} seeAllComponentLast={this.SALast} />
+        <Carousel width={1000} maxComponentsInFrame={3} height={300}>
+          {this.SAFirst}
+          {this.componentArray}
+        </Carousel>
       </div>
     );
   }
